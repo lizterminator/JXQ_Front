@@ -1,0 +1,37 @@
+    <div class="container w-xxl w-auto-xs" ng-controller="SignupFormController" ng-init="app.settings.container = false;">
+      <a ui-sref="index.xajx({pageId:1})" class="navbar-brand block m-t">{{app.name}}</a>
+      <div class="m-b-lg">
+        <div class="wrapper text-center">
+          <strong>轻松发布驾校</strong>
+        </div>
+        <form name="form" class="form-validation">
+          <div class="text-danger wrapper text-center" ng-show="authError">
+              {{authError}}
+          </div>
+          <div class="list-group list-group-sm">
+            <div class="list-group-item">
+              <input placeholder="输入手机号" class="form-control no-border" ng-model="user.phone" ng-pattern="/^1[3|4|5|8][0-9]\d{8}$/" required>
+            </div>
+            
+            <div class="list-group-item">
+               <input type="password" placeholder="输入密码" class="form-control no-border" ng-model="user.password" required>
+            </div>
+            <div class="list-group-item">
+               <input type="password" class="form-control no-border" name="confirm_password" required ng-model="confirm_password" ui-validate=" '$value==user.password' " ui-validate-watch=" 'user.password' " placeholder="再次输入密码">
+                  <span ng-show='form.confirm_password.$error.validator'>两次密码输入不一致!</span>
+            </div>
+            <div class="list-group-item">
+               <input type="text" placeholder="输入注册码" class="form-control no-border" ng-model="user.signupCode" required>
+            </div>
+
+          </div>
+          <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="signup()" ng-disabled='form.$invalid'>驾 校 注 册</button>
+          <div class="line line-dashed"></div>
+          <p class="text-center"><small>已经有账号了?</small></p>
+          <a ui-sref="access.schoolSignin" class="btn btn-lg btn-default btn-block">去登录</a>
+        </form>
+      </div>
+      <div class="text-center" ng-include="'tpl/blocks/page_footer.html'">
+        {% include 'blocks/page_footer.html' %}
+      </div>
+    </div>

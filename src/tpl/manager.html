@@ -1,0 +1,46 @@
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">订单管理</h1>
+</div>
+      </div>
+    </div>
+    <!-- / main header -->
+
+<div class="wrapper-md">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      预约订单
+    </div>
+    <div class="table-responsive">
+      <table ui-jq="dataTable" ui-options="{
+          ajax:{
+          url:'api/data.json'},
+          
+          columns: [
+            { data: 'engine' },
+            { data: 'browser' },
+            { data: 'platform' },
+            { data: 'version' },
+            { data: 'grade' }
+          ]
+        }" class="table table-striped b-t b-b">
+        <thead>
+          <tr>
+            <th  style="width:20%">Rendering engine</th>
+            <th  style="width:25%">Browser</th>
+            <th  style="width:25%">Platform(s)</th>
+            <th  style="width:15%">Engine version</th>
+            <th  style="width:15%">CSS grade</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+  </div>

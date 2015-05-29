@@ -1,0 +1,117 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false; 
+    app.settings.asideDock = false;
+  ">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">订单确认</h1>
+        </div>
+
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md">
+      <!-- stats -->
+      <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">确认联系人信息</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" id="payForm" ng-submit="submitorder()">
+                        <div class="form-group">
+                            <label for="school" class="col-sm-2 control-label">选择学校</label>
+                            <div class="col-lg-3">
+                                <select class="form-control" name="school">
+                                    <option value="xidian">西电</option>
+                                    <!-- <option value="xiwai">西外</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">联系人姓名</label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" name="contact" id="contact" placeholder="填写联系人姓名" required ng-model="ordercontactname" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-2 control-label">联系人手机号码</label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" name="contactPhone" pattern="^1[3|4|5|8][0-9]\d{4,8}$" id="contactPhone" placeholder="填写联系人手机号码" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">预约清单</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label for="jx_name" class="col-sm-2 control-label">驾校名称</label>
+                            <div class="col-lg-3">
+                                <input type="text" class="form-control" name="jx_name" id="jx_name" value="{{jxname}}" form="payForm" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="local" class="col-sm-2 control-label">本地报名人数</label>
+                            <div class="col-lg-3">
+                                <input type="number" max="20" min="0" name="local" class="form-control" value="0" form="payForm" id="local" placeholder="填写本地报名人数">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="not_local" class="col-sm-2 control-label">异地报名人数</label>
+                            <div class="col-lg-3">
+                                <input type="number" max="20" min="0" name="notLocal" class="form-control" value="0" form="payForm" id="not_local" placeholder="填写异地报名人数">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">订单结算</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="cart_count fr">
+                        <div class="cart_rmb">
+                            <i>总计：</i><span>￥00.00</span>
+                        </div>
+                        <div class="cart_btnBox">
+                            <input id="submitOrder" type="submit" class="btn btn-warning cart_btn" value="提交订单">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+      </div>
+      <!-- / stats -->
+
+      <!-- service -->
+
+      <!-- / service -->
+
+      <!-- tasks -->
+
+      <!-- / tasks -->
+
+      <!-- tasks -->
+
+      <!-- / tasks -->
+    </div>
+  </div>
+  <!-- / main -->
+  <!-- right col -->
+
+  <!-- / right col -->
+</div>

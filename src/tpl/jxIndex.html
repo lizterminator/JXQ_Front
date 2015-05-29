@@ -1,0 +1,155 @@
+<div>
+  <ul class="breadcrumb bg-white b-a">
+    <li><a ui-sref="index.portal"><i class="fa fa-home"></i> 首页</a></li>
+    <li><a ui-sref="index.xajx({pageId:1})">西安驾校</a></li>
+    <li class="active">{{jx.name}}</li>
+  </ul>
+</div>
+
+<div class="bg-light lter b-b wrapper-md">
+  <h1 class="m-n font-thin h3">{{jx.name}}<span class="badge bg-success">16人已预约</span></h1>
+
+  <small class="text-muted">{{jx.intro}}</small>
+</div>
+<div class="wrapper-md">
+  
+  <div class="row">
+    <div class="col-lg-7">
+     
+      <!-- carousel -->
+      <div class="panel b-a" set-ng-animate="false">
+        
+        <carousel interval="myInterval">
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" class="img-full">
+            <div class="carousel-caption">
+              <!-- <h4>Slide {{$index}}</h4>
+              <p>{{slide.text}}</p> -->
+            </div>
+          </slide>
+        </carousel>
+        
+      </div>
+      <!-- / carousel -->      
+      
+    </div>
+
+    <div class="col-lg-5">
+      
+      <div class="panel b-a panel-info">
+        <div class="panel-heading">
+          <div class="clearfix">
+            
+            <div class="clear">
+              <div class="h3 m-t-xs m-b-xs">
+                {{jx.name}}
+                <!-- <div class="dropdown pull-right" dropdown>
+                  <a href class="dropdown-toggle clear" dropdown-toggle>
+                    <i class="fa fa-wechat text-success pull-right  m-t-sm"></i>
+                  </a>
+                  dropdown
+                  <div class="dropdown-menu animated fadeInRight w" >
+                    <div class="wrapper b-b m-b-sm bg-light m-t-n-xs">
+                      
+                        <img src="img/c2.jpg">
+                      
+                    </div>
+                    
+                  </div>
+                  / dropdown
+                </div> -->
+                
+              </div>
+              <small class="text-muted">{{jx.intro}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="list-group no-radius alt">
+          
+          <a class="list-group-item " href>
+            <i class="fa fa-money fa-fw text-muted"></i> 
+            本地价格 <span class="pull-right">{{jx.localPrice}}</span>
+          </a>
+          <a class="list-group-item" href>
+            <i class="fa fa-money fa-fw text-muted"></i> 
+            外地价格 <span class="pull-right">{{jx.foreignPrice}}</span>
+          </a>
+          <a class="list-group-item" href>
+             
+            <i class="fa fa-location-arrow fa-fw text-muted"></i> 
+            地址  <span class="pull-right">{{jx.locate}}</span>
+          </a>
+          <a class="list-group-item" href>
+            
+            <i class="fa fa-institution fa-fw text-muted"></i> 
+            服务学校  <span class="pull-right">{{jx.serviceSchool}}</span>
+          </a>
+          <a class="list-group-item" href>
+            
+            <i class="fa fa-phone fa-fw text-muted"></i> 
+            联系电话  <span class="pull-right">{{jx.phone}}</span>
+          </a>
+          <a ui-sref="index.order({jxId:jx.id,jxname:jx.name})">
+          <button class="btn btn-info btn-block btn-lg"><i class="fa fa-shopping-cart"></i> 立即预约</button>
+          </a>
+        </div>
+      </div>
+       
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel b-a panel-default">
+       
+        <div class="panel-body" >
+          <tabset class="tab-container">
+          <!-- <tab heading="Static title">Static content</tab> -->
+          <!-- <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+            {{tab.content}}
+          </tab> -->
+          <tab heading="驾校承诺" class="tab-fixheight">
+            驾校的承诺
+          </tab>
+          <tab heading="驾校风采" class="tab-fixheight">
+            <img src="img/c2.jpg">
+            <img src="img/c1.jpg">
+            <img src="img/c3.jpg">
+          </tab>
+          <tab heading="驾校位置" class="tab-fixheight">
+            <iframe width="604" height="525" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{jx.mapUrl | trustAsResourceUrl}}"></iframe>
+          </tab>
+          <!-- <tab>
+            <tab-heading>
+              <i class="glyphicon glyphicon-bell"></i> Alert!
+            </tab-heading>
+            I've got an HTML heading, and a select callback. Pretty cool!
+          </tab> -->
+        </tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+      <!-- / tab -->
+      <!-- <div class="panel b-a panel-default">
+        <div class="panel-heading">
+          
+          <div class="clearfix">
+            
+            <div class="clear">
+              <div class="h3 m-t-xs m-b-xs">
+                驾校风采
+                <i class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>
+              </div>
+              <small class="text-muted">{{jx.intro}}</small>
+            </div>
+          </div>
+        </div>
+        
+      </div> -->
+    </div>
+  </div>
+
+</div>
