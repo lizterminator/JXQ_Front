@@ -174,18 +174,27 @@
                     </div>
                     <!-- <progressbar value="60" class="progress-xs m-b-none bg-white"></progressbar> -->
                 </li>
-                <li>
+                <li ng-show="user.type==='user'">
                     <a ui-sref="index.profile">
                         <span class="badge bg-danger pull-right">30%</span>
                         <span>完善个人信息</span>
                     </a>
                 </li>
-                <li>
+                <li ng-show="user.type==='user'">
                     <a ui-sref="index.myOrder">
                         <span>我的订单</span>
                     </a>
                 </li>
-
+                <li ng-show="user.type==='school'">
+                    <a ui-sref="index.jxEdit">
+                        <span>驾校信息修改</span>
+                    </a>
+                </li>
+                <li ng-show="user.type==='school'">
+                    <a ui-sref="index.manager">
+                        <span>订单管理</span>
+                    </a>
+                </li>
                 <li class="divider"></li>
                 <li>
                     <a ui-sref="access.userSignin">退出</a>
