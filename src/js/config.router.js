@@ -33,6 +33,9 @@ angular.module('app')
                       id: '002'
                     }];
                     
+                    $scope.user = {
+                      type: 'user'
+                    }
                   }
               })
               .state('index.portal',{
@@ -180,7 +183,7 @@ angular.module('app')
 
               //需要用户登录
               .state('index.profile', {
-                  url: '/profile/:userid',
+                  url: '/profile',
                   templateUrl: 'tpl/profile.html',
                   controller: 'XeditableCtrl',
                   resolve: {
@@ -236,42 +239,160 @@ angular.module('app')
               .state('access.userSignin', {
                   url: '/userSignin',
                   templateUrl: 'tpl/page_usersignin.html',
-                  resolve: {
+                  controller: function($scope, $http, $state) {
+                    $scope.user = {};
+                    $scope.authError = null;
+                    $scope.login = function() {
+                      $scope.authError = null;
+                      // Try to login
+                      $http.post('api/login', {phone: $scope.user.phone, password: $scope.user.password})
+                      .then(function(response) {
+                        if ( !response.data.user ) {
+                          $scope.authError = '手机号或密码错误';
+                        }else{
+                          $state.go('index.portal');
+                        }
+                      }, function(x) {
+                        $scope.authError = 'Server Error';
+                      });
+                    };
+                  }
+                  /*resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
                           return uiLoad.load( ['js/controllers/signin.js'] );
                       }]
-                  }
+                  }*/
               })
               .state('access.userSignup', {
                   url: '/userSignup',
                   templateUrl: 'tpl/page_usersignup.html',
-                  resolve: {
+                  controller: function($scope, $http, $state) {
+                    $scope.user = {};
+                    $scope.authError = null;
+                    $scope.getSignupCodeError = null;
+                    $scope.gettingCode = false;
+
+                    $scope.getSignupCode = function(){
+                      var timestamp = new Date();
+                      console.log(timestamp);
+
+                      $scope.gettingCode = true;
+                      $http.post('api/getSignupCode', {phone: $scope.user.phone,timestamp: timestamp})
+                      .then(function(response) {
+                        if ( !response.data.user ) {
+                          $scope.getSignupCodeError = response;
+                        }else{
+                          
+                          $state.go('index.portal');
+                        }
+                      }, function(x) {
+                        $scope.getSignupCodeError = 'Server Error';
+                      });
+
+                    };
+
+                    $scope.signup = function() {
+                      $scope.authError = null;
+                      // Try to create
+                      
+                      $http.post('api/signup', {phone: $scope.user.phone, signupCode: $scope.user.signupCode, password: $scope.user.password})
+                      .then(function(response) {
+                        if ( !response.data.user ) {
+                          $scope.authError = response;
+                        }else{
+                          $state.go('index.portal');
+                        }
+                      }, function(x) {
+                        $scope.authError = 'Server Error';
+                      });
+                    };
+                  }
+                  /*resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
                           return uiLoad.load( ['js/controllers/signup.js'] );
                       }]
-                  }
+                  }*/
               })
               .state('access.schoolSignin', {
                   url: '/schoolSignin',
                   templateUrl: 'tpl/page_schoolsignin.html',
-                  resolve: {
+                  controller: function($scope, $http, $state) {
+                    $scope.user = {};
+                    $scope.authError = null;
+                    $scope.login = function() {
+                      $scope.authError = null;
+                      // Try to login
+                      $http.post('api/login', {phone: $scope.user.phone, password: $scope.user.password})
+                      .then(function(response) {
+                        if ( !response.data.user ) {
+                          $scope.authError = '手机号或密码错误';
+                        }else{
+                          $state.go('index.portal');
+                        }
+                      }, function(x) {
+                        $scope.authError = 'Server Error';
+                      });
+                    };
+                  }
+                  /*resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
                           return uiLoad.load( ['js/controllers/signin.js'] );
                       }]
-                  }
+                  }*/
               })
               .state('access.schoolSignup', {
                   url: '/schoolSignup',
                   templateUrl: 'tpl/page_schoolsignup.html',
-                  resolve: {
+                  controller: function($scope, $http, $state) {
+                    $scope.user = {};
+                    $scope.authError = null;
+                    $scope.getSignupCodeError = null;
+                    $scope.gettingCode = false;
+
+                    $scope.getSignupCode = function(){
+                      var timestamp = new Date();
+                      console.log(timestamp);
+
+                      $scope.gettingCode = true;
+                      $http.post('api/getSignupCode', {phone: $scope.user.phone,timestamp: timestamp})
+                      .then(function(response) {
+                        if ( !response.data.user ) {
+                          $scope.getSignupCodeError = response;
+                        }else{
+                          
+                          $state.go('index.portal');
+                        }
+                      }, function(x) {
+                        $scope.getSignupCodeError = 'Server Error';
+                      });
+
+                    };
+
+                    $scope.signup = function() {
+                      $scope.authError = null;
+                      // Try to create
+                      
+                      $http.post('api/signup', {phone: $scope.user.phone, signupCode: $scope.user.signupCode, password: $scope.user.password})
+                      .then(function(response) {
+                        if ( !response.data.user ) {
+                          $scope.authError = response;
+                        }else{
+                          $state.go('index.portal');
+                        }
+                      }, function(x) {
+                        $scope.authError = 'Server Error';
+                      });
+                    };
+                  }
+                  /*resolve: {
                       deps: ['uiLoad',
                         function( uiLoad ){
                           return uiLoad.load( ['js/controllers/signup.js'] );
                       }]
-                  }
+                  }*/
               })
               .state('access.forgotpwd', {
                   url: '/forgotpwd',

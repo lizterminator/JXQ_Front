@@ -1,5 +1,5 @@
-<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
-  <a ui-sref="index.xajx({pageId:1})" class="navbar-brand block m-t">{{app.name}}</a>
+<div class="container w-xxl w-auto-xs"  ng-init="app.settings.container = false;">
+  <a ui-sref="index.portal" class="navbar-brand block m-t">{{app.name}}</a>
   <div class="m-b-lg">
     <div class="wrapper text-center">
       <strong>找驾校,来吧！</strong>
@@ -13,7 +13,7 @@
           <input type="text" placeholder="输入手机号" class="form-control no-border" ng-model="user.phone" ng-pattern="/^1[3|4|5|8][0-9]\d{8}$/" required>
         </div>
         <div class="list-group-item">
-           <input type="password" placeholder="输入密码" class="form-control no-border" ng-model="user.password" required>
+           <input type="password" placeholder="输入密码" class="form-control no-border" ng-maxlength="14" ng-minlength="6" ng-model="user.password" required>
         </div>
       </div>
       <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-disabled='form.$invalid'>用 户 登 录</button>
