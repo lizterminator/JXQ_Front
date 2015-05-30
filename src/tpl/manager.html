@@ -1,46 +1,81 @@
-  <div class="col">
+<div class="col">
     <!-- main header -->
     <div class="bg-light lter b-b wrapper-md">
-      <div class="row">
-<div class="bg-light lter b-b wrapper-md">
-  <h1 class="m-n font-thin h3">订单管理</h1>
-</div>
-      </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <h1 class="m-n font-thin h3 text-black">订单管理</h1>
+            </div>
+        </div>
     </div>
     <!-- / main header -->
-
-<div class="wrapper-md">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      预约订单
+    <div class="wrapper-md">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                预约订单
+            </div>
+            <div class="table-responsive">
+                <table id="example" ui-jq="dataTable" ui-options="{
+                          ajax:{
+                            url:'api/data.json'},
+                            
+                            columns: [
+                              { data: 'engine' },
+                              { data: 'browser' },
+                              { data: 'platform' },
+                              { data: 'version' },
+                              { data: 'grade' }
+                            ]}" class="table table-striped b-t b-b">
+                    <thead>
+                        <tr>
+                            <th style="width:20%">Rendering engine</th>
+                            <th style="width:25%">Browser</th>
+                            <th style="width:25%">Platform(s)</th>
+                            <th style="width:15%">Engine version</th>
+                            <th style="width:15%">CSS grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-default panel">
+            <div class="panel-heading">
+                确认预约
+            </div>
+            <div class="panel-body">
+            <form class="form-horizontal" name="confirm" id="confirm" action="check.ds" method="post" novalidate>
+                <div class="form-group">
+                    <label class="control-label col-md-2">学员姓名:</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="name" id="name" required data-validation-required-message="Please enter your name.">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label  class="control-label col-md-2">学员手机号:</label>
+                    <div class="col-md-3">
+                        <input type="tel" class="form-control" name="phone" id="phone" required data-validation-required-message="Please enter your phone number.">
+                    </div>
+                </div>
+                <div class=" form-group">
+                    <label  class="control-label col-md-2">学员预约号:</label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" name="checknumber" id="checknumber" required data-validation-required-message="Please enter your checknumber.">
+                    </div>
+                </div>
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="button" id="check" class="btn btn-primary pull-right">确认预约</button>
+            </form></div>
+        </div>
     </div>
-    <div class="table-responsive">
-      <table ui-jq="dataTable" ui-options="{
-          ajax:{
-          url:'api/data.json'},
-          
-          columns: [
-            { data: 'engine' },
-            { data: 'browser' },
-            { data: 'platform' },
-            { data: 'version' },
-            { data: 'grade' }
-          ]
-        }" class="table table-striped b-t b-b">
-        <thead>
-          <tr>
-            <th  style="width:20%">Rendering engine</th>
-            <th  style="width:25%">Browser</th>
-            <th  style="width:25%">Platform(s)</th>
-            <th  style="width:15%">Engine version</th>
-            <th  style="width:15%">CSS grade</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
-
-  </div>
+<script type="text/javascript">
+ $('#example tbody').on( 'click', 'tr', function () {
+         
+          /* $(this).toggle('selected'); */
+           var name =$(this)[0].cells[0].innerHTML;
+           var phone = $(this)[0].cells[1].innerHTML;
+           $('#name').val(name);
+           $('#phone').val(phone);
+          } );</script>
