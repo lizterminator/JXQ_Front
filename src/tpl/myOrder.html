@@ -2,67 +2,54 @@
     app.settings.asideFolded = false; 
     app.settings.asideDock = false;
   ">
-  <!-- main -->
-  <div class="col">
-    <!-- main header -->
-    <div class="bg-light lter b-b wrapper-md">
-      <div class="row">
-        <div class="col-sm-6 col-xs-12">
-          <h1 class="m-n font-thin h3 text-black">我的订单</h1>
-        </div>
-
-      </div>
-    </div>
-    <!-- / main header -->
-    <div class="wrapper-md">
-      <!-- stats -->
-      <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">订单详情</h3>
-                </div>
-                <div class="panel-body">
-                  <table class="table table-bordered">
-                    <thead>
-                      <td>预约号</td>
-                      <td>预约驾校</td>
-                      <td>预约时间</td>
-                      <td>状态</td>
-                      <td>操作</td>
-                    </thead>
-                    <tbody ng-repeat="order in orders">
-                      <td>{{order.id}}</td>
-                      <td>{{order.jxname}}</td>
-                      <td>{{order.time}}</td>
-                      <td>{{order.status}}</td>
-                      <td><button class="btn btn-danger" ng-click="delete($index)">删除</button></td>
-                    </tbody>
-                  </table>
+    <!-- main -->
+    <div class="col">
+        <!-- main header -->
+        <div class="bg-light lter b-b wrapper-md">
+            <div class="row">
+                <div class="col-sm-6 col-xs-12">
+                    <h1 class="m-n font-thin h3 text-black">我的订单</h1>
                 </div>
             </div>
-
         </div>
-
-
-      </div>
-      <!-- / stats -->
-
-      <!-- service -->
-
-      <!-- / service -->
-
-      <!-- tasks -->
-
-      <!-- / tasks -->
-
-      <!-- tasks -->
-
-      <!-- / tasks -->
+        <!-- / main header -->
+        <div class="wrapper-md">
+            <!-- stats -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">订单详情</h3>
+                        </div>
+                        <div class="table-responsive">
+                            <table ui-jq="dataTable" ui-options="{
+          ajax:{
+          url:'api/data.json'},
+          
+          columns: [
+            { data: 'engine' },
+            { data: 'browser' },
+            { data: 'platform' },
+            { data: 'version' },
+            { data: 'grade' }
+          ]
+        }" class="table table-striped b-t b-b">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%">预约号</th>
+                                        <th style="width:25%">预约驾校</th>
+                                        <th style="width:25%">预约时间</th>
+                                        <th style="width:15%">状态</th>
+                                        <th style="width:15%">操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <!-- / main -->
-  <!-- right col -->
-
-  <!-- / right col -->
 </div>
