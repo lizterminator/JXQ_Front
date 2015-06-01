@@ -24,25 +24,24 @@
                 </div>
                 <div class="panel-body">
                     <form class="form-horizontal" id="payForm" ng-submit="submitorder()">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="school" class="col-sm-2 control-label">选择学校</label>
                             <div class="col-lg-3">
-                                <select class="form-control" name="school">
-                                    <option value="xidian">西电</option>
-                                    <!-- <option value="xiwai">西外</option> -->
+                                <select class="form-control" name="school" ng-model="order.school" >
+                                    <option value="xidian" selected = "selected">西电</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">联系人姓名</label>
+                            <label  class="col-sm-2 control-label">联系人姓名</label>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="contact" id="contact" placeholder="填写联系人姓名" required ng-model="ordercontactname" value="">
+                                <input type="text" class="form-control" name="contact" placeholder="填写联系人姓名" required ng-model="contactName" value="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="phone" class="col-sm-2 control-label">联系人手机号码</label>
+                            <label  class="col-sm-2 control-label">联系人手机号码</label>
                             <div class="col-lg-3">
-                                <input type="text" class="form-control" name="contactPhone" pattern="^1[3|4|5|8][0-9]\d{4,8}$" id="contactPhone" placeholder="填写联系人手机号码" required>
+                                <input type="text" class="form-control" name="contactPhone" pattern="^1[3|4|5|8][0-9]\d{4,8}$" placeholder="填写联系人手机号码" required ng-model="contactPhone">
                             </div>
                         </div>
                     </form>
@@ -62,17 +61,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="local" class="col-sm-2 control-label">本地报名人数</label>
+                            <label class="col-sm-2 control-label">归属地</label>
                             <div class="col-lg-3">
-                                <input type="number" max="20" min="0" name="local" class="form-control" value="0" form="payForm" id="local" placeholder="填写本地报名人数">
+                                <input type="radio" ng-model="isLocal" name="local" class="" form="payForm" value="0">本地
+                                <input type="radio" ng-model="isLocal"  name = "local" class = ""  form="payForm" value="1">异地
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="not_local" class="col-sm-2 control-label">异地报名人数</label>
-                            <div class="col-lg-3">
-                                <input type="number" max="20" min="0" name="notLocal" class="form-control" value="0" form="payForm" id="not_local" placeholder="填写异地报名人数">
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -86,7 +81,7 @@
                             <i>总计：</i><span>￥00.00</span>
                         </div>
                         <div class="cart_btnBox">
-                            <input id="submitOrder" type="submit" class="btn btn-warning cart_btn" value="提交订单">
+                            <input id="submitOrder" type="submit" class="btn btn-warning cart_btn" value="提交订单" ng-click="submitorder()">
                         </div>
                     </div>
                 </div>

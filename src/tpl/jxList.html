@@ -11,7 +11,7 @@
 
 <div class="wrapper-md">
   <div class="row row-sm">
-    <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="jx in filteredJxs">
+    <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="jx in jxs">
       <div class="panel b-a">
         <div class="panel-heading text-center bg-info no-border">
           <h4 class="text-u-c m-b-none">{{jx.schoolName}}</h4>
@@ -21,7 +21,7 @@
             <span class="text-xs">/ 人</span>
           </h2>
         </div>
-        <img src="img/c5.jpg" alt="xx" class="img-full">
+        <img ng-src="{{jx.indexPic}}" alt="index picture of jx" class="img-full">
         
         <ul class="list-group  no-borders m-t-sm">
           <li class="list-group-item">
@@ -63,11 +63,8 @@
       <div class="text-center m-t-lg m-b-lg">
         <ul class="pagination pagination-md">
           <li><a href><i class="fa fa-chevron-left"></i></a></li>
-          <li class="active"><a href>1</a></li>
-          <li><a href>2</a></li>
-          <li><a href>3</a></li>
-          <li><a href>4</a></li>
-          <li><a href>5</a></li>
+          <li  ng-repeat="x in totalPage track by $index"><a ui-sref="index.xajx({pageId:$index+1})">{{$index+1}}</a></li>
+          
           <li><a href><i class="fa fa-chevron-right"></i></a></li>
         </ul>
       </div>
