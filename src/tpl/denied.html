@@ -1,0 +1,28 @@
+<div class="container w-xxl w-auto-xs" ng-init="app.settings.container = false;" ng-show="!isLogin">
+  <div class="text-center m-b-lg">
+    <h1 class="text-shadow text-white">404</h1>
+  </div>
+  <div class="list-group bg-info auto m-b-sm m-b-lg">
+    <a href="#/" class="list-group-item">
+      <i class="fa fa-chevron-right text-muted"></i>
+      <i class="fa fa-fw fa-mail-forward m-r-xs"></i> 去首页
+    </a>
+    <a ui-sref="access.userSignin" class="list-group-item">
+      <i class="fa fa-chevron-right text-muted"></i>
+      <i class="fa fa-fw fa-sign-in m-r-xs"></i> 用 户 登 录
+    </a>
+    <a ui-sref="access.userSignup" class="list-group-item">
+      <i class="fa fa-chevron-right text-muted"></i>
+      <i class="fa fa-fw fa-unlock-alt m-r-xs"></i> 用 户 注 册
+    </a>
+
+    <a ui-sref="access.schoolSignin" class="list-group-item">
+      <i class="fa fa-chevron-right text-muted"></i>
+      <i class="fa fa-fw fa-sign-in m-r-xs"></i> 驾 校 登 录
+    </a>
+    <a ui-sref="access.schoolSignup" class="list-group-item">
+      <i class="fa fa-chevron-right text-muted"></i>
+      <i class="fa fa-fw fa-unlock-alt m-r-xs"></i> 驾 校 注 册
+    </a>
+  </div>
+</div>

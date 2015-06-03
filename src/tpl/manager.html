@@ -1,4 +1,4 @@
-  <div class="col">
+  <div class="col" ng-show="user.role==='school'">
     <!-- main header -->
     <div class="bg-light lter b-b wrapper-md">
       <div class="row">
@@ -44,3 +44,7 @@
 </div>
 
   </div>
+
+  <div class="text-center" ng-include="'tpl/denied.html'">
+    {% include 'denied.html' %}
+</div>

@@ -19,14 +19,13 @@ angular.module('app').service('requestService', function($http) {
     transformRequest: transFn
   };
 
-  this.test = function($scope){
-    //var url = baseUrl + "school/getSchoolList.do";
-    var url = "http://localhost:8888/jxnet/getSchoolList.cu"
+  this.getUserInfo = function($scope){
+    var url = baseUrl + "user/getUserDetail.do";
     $http.get(url).success(function(data) {
-        console.log(data);
-        //$scope.xajx = data;
+        $scope.userDetail = data;
     });
   }
+
   this.userLogin = function($state,$rootScope,params){
     var url = baseUrl + "user/login.do";
     //var url = "http://localhost:8888/jxnet/userLogin.cu"
@@ -41,9 +40,9 @@ angular.module('app').service('requestService', function($http) {
           name: '大哥',
           phone: '18710847003'
         }
-        
-        localStorage.setItem('jxq.user',JSON.stringify(user));
 
+        localStorage.setItem('jxq.user',JSON.stringify(user));
+        console.log('login success');
         $state.go('index.portal');
       }
     }, function(x) {
@@ -104,6 +103,7 @@ angular.module('app').service('requestService', function($http) {
   }
 });
 
+
 angular.module('app')
   .run(
     ['$rootScope', '$state', '$stateParams',
@@ -131,12 +131,9 @@ angular.module('app')
             abstract: true,
             url: '/index',
             templateUrl: 'tpl/app.html',
-            controller: function($scope,$rootScope,$cookies,$cookieStore,requestService) {
+            controller: function($scope,$rootScope,$state,$cookies,$cookieStore,requestService) {
 
               requestService.getJxList($scope);
-
-              //console.log($cookies['mobile']);
-               //console.log($cookieStore.get('mobile'));
 
               if($cookieStore.get('mobile')){
                 var user = $rootScope.user = JSON.parse(localStorage.getItem('jxq.user'));
@@ -148,20 +145,11 @@ angular.module('app')
               }
               $rootScope.logout = function(){
                 localStorage.removeItem('jxq.user');
-                $cookieStore.remove('mobile');
+                $cookieStore.remove('mobile');//?不管用？？
+                $rootScope.isLogin = false;
+                $state.reload();
               }
 
-              /*$scope.xajx = [{
-                schoolName: '锦志程驾校',
-                id: '001'
-              }, {
-                schoolName: '华英驾校',
-                id: '002'
-              }];*/
-
-              /*$scope.user = {
-                type: 'user'
-              }*/
             }
           })
           .state('index.portal', {
@@ -196,54 +184,7 @@ angular.module('app')
               requestService.getPage($scope,pageId);
 
               
-              /*$scope.jxs = [{
-                schoolName: '锦志程驾校',
-                id: '001',
-                localPrice: 2000,
-                foreignPrice: 3000,
-                discount: 30,
-                orders: 45,
-                indexPic: "http://..",
-                intro: "西电 运动短裤男 "
-              }, {
-                schoolName: '华英驾校',
-                id: '002',
-                localPrice: 2500,
-                foreignPrice: 3400,
-                discount: 20,
-                indexPic: "http://..",
-                orders: 88,
-                intro: "西电 西外 西工大 一条龙"
-              }, {
-                schoolName: '锦志程驾校',
-                id: '003',
-                localPrice: 2000,
-                foreignPrice: 3000,
-                discount: 30,
-                orders: 45,
-                indexPic: "http://..",
-                intro: "西电 运动短裤男 "
-              }, {
-                schoolName: '华英驾校',
-                id: '004',
-                localPrice: 2500,
-                foreignPrice: 3400,
-                discount: 20,
-                indexPic: "http://..",
-                orders: 88,
-                intro: "西电 西外 西工大 一条龙"
-              }];*/
-
-              //$scope.filteredJxs = [], $scope.currentPage = 1, $scope.numPerPage = 10, $scope.maxSize = 4;
-
-
-
-              /*$scope.$watch("currentPage + numPerPage", function() {
-                var begin = (($scope.currentPage - 1) * $scope.numPerPage),
-                  end = begin + $scope.numPerPage;
-
-                $scope.filteredJxs = $scope.jxs.slice(begin, end);
-              });*/
+             
             }
           })
 
@@ -304,15 +245,13 @@ angular.module('app')
         .state('index.profile', {
             url: '/profile',
             templateUrl: 'tpl/profile.html',
-            controller: 'XeditableCtrl',
+            controller: function(){
+
+            },
             resolve: {
               deps: ['$ocLazyLoad',
                 function($ocLazyLoad) {
-                  return $ocLazyLoad.load('xeditable').then(
-                    function() {
-                      return $ocLazyLoad.load('js/controllers/xeditable.js');
-                    }
-                  );
+                  return $ocLazyLoad.load('xeditable');
                 }
               ]
             }
@@ -343,7 +282,7 @@ angular.module('app')
             templateUrl: 'tpl/manager.html'
           })
           .state('index.jxEdit', {
-            url: '/jxEdit',
+            url: '/schoolPublish',
             templateUrl: 'tpl/jxEdit.html'
           })
 
@@ -367,39 +306,6 @@ angular.module('app')
                   $rootScope.authError = null;
                   // Try to login
 
-
-
-                  
-                  //$state.go('index.portal');
-                  //
-                  /*$.ajax({
-                    url: userLoginUrl,
-                    type: 'POST',
-                    dataType: 'JSON',
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
-                    data: {
-                      phone: $scope.user.phone,
-                      password: $scope.user.password
-                    }
-                  })
-                  .done(function(data) {
-                    console.log(data);
-                    $rootScope.isLogin = true;
-                        $rootScope.user = {
-                          type: 'user'
-                        }
-                    $state.go('index.portal');
-                    console.log("success");
-                  })
-                  .fail(function() {
-                    console.log("error");
-                  })
-                  .always(function() {
-                    console.log("complete");
-                  });*/
                   var params = {
                     phone: $scope.user.phone,
                     password: $scope.user.password
