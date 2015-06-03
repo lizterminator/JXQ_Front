@@ -1,7 +1,5 @@
 'use strict';
-var userLoginUrl = "http://192.168.1.107:8080/New_JXQ/user/login.do";
 
-var registerUrl = "";
 /**
  * Config for the router
  */
@@ -9,8 +7,8 @@ var registerUrl = "";
 
 angular.module('app').service('requestService', function($http) {
 
-  var baseUrl = "http://192.168.1.107:8080/New_JXQ/";
-
+  //var baseUrl = "http://localhost:8888/jxnet/";
+  var baseUrl = "http://localhost:8888/New_JXQ/";
   var transFn = function(data) {
     return $.param(data);
   };
@@ -22,25 +20,29 @@ angular.module('app').service('requestService', function($http) {
   };
 
   this.test = function($scope){
-    var url = baseUrl + "school/getSchoolList.do";
+    //var url = baseUrl + "school/getSchoolList.do";
+    var url = "http://localhost:8888/jxnet/getSchoolList.cu"
     $http.get(url).success(function(data) {
         console.log(data);
         //$scope.xajx = data;
     });
   }
-  this.userLogin = function($rootScope,params){
+  this.userLogin = function($state,$rootScope,params){
     var url = baseUrl + "user/login.do";
-
-    $http.post(uel, params, postCfg)
+    //var url = "http://localhost:8888/jxnet/userLogin.cu"
+    $http.post(url, params, postCfg)
     .then(function(response) {
-
       if (response.data.error) {
         $rootScope.authError = response.data.error;
       } else {
         $rootScope.isLogin = true;
-        $rootScope.user = {
-          type: 'user'
+        var user = $rootScope.user = {
+          role: response.data.type,
+          name: '大哥',
+          phone: '18710847003'
         }
+        
+        localStorage.setItem('jxq.user',JSON.stringify(user));
 
         $state.go('index.portal');
       }
@@ -66,8 +68,8 @@ angular.module('app').service('requestService', function($http) {
   this.getJxList = function($scope){
 
     var url = baseUrl + "school/getSchoolList.do";
+    ///var url = "http://localhost:8888/jxnet/getSchoolList.cu"
     $http.get(url).success(function(data) {
-        console.log(data);
         $scope.xajx = data;
     });
   }
@@ -116,7 +118,10 @@ angular.module('app')
       function($stateProvider, $urlRouterProvider, $httpProvider, JQ_CONFIG) {
         
         $httpProvider.defaults.withCredentials = true;
-        // $httpProvider.defaults.useXDomain = true;
+         //Enable cross domain calls
+        $httpProvider.defaults.useXDomain = true;
+
+    
 
         $urlRouterProvider
           .otherwise('/index/portal');
@@ -126,13 +131,24 @@ angular.module('app')
             abstract: true,
             url: '/index',
             templateUrl: 'tpl/app.html',
-            controller: function($scope,requestService) {
+            controller: function($scope,$rootScope,$cookies,$cookieStore,requestService) {
 
               requestService.getJxList($scope);
 
+              //console.log($cookies['mobile']);
+               //console.log($cookieStore.get('mobile'));
 
-              $scope.logout = function(){
-                requestService.test($scope);
+              if($cookieStore.get('mobile')){
+                var user = $rootScope.user = JSON.parse(localStorage.getItem('jxq.user'));
+                if(user)
+                  $rootScope.isLogin = true;
+              }else{
+                localStorage.removeItem('jxq.user');
+                $rootScope.user = {};
+              }
+              $rootScope.logout = function(){
+                localStorage.removeItem('jxq.user');
+                $cookieStore.remove('mobile');
               }
 
               /*$scope.xajx = [{
@@ -344,7 +360,7 @@ angular.module('app')
           .state('access.userSignin', {
             url: '/userSignin',
             templateUrl: 'tpl/page_usersignin.html',
-            controller: function($scope, $state, $rootScope,requestService) {
+            controller: function($scope, $state,$timeout,$cookies,$cookieStore, $rootScope,requestService) {
                 $rootScope.user = {};
                 $rootScope.authError = null;
                 $scope.login = function() {
@@ -388,7 +404,7 @@ angular.module('app')
                     phone: $scope.user.phone,
                     password: $scope.user.password
                   }
-                  requestService.userLogin($rootScope,params);
+                  requestService.userLogin($state,$rootScope,params);
 
                   
                 };

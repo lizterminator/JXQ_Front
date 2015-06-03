@@ -14,10 +14,10 @@
         <a href class="dropdown-toggle hidden-folded" dropdown-toggle>
           <span class="clear">
             <span class="block m-t-sm">
-              <strong class="font-bold text-lt">John.Smith</strong> 
+              <strong class="font-bold text-lt">{{user.name}}</strong> 
               <b class="caret"></b>
             </span>
-            <span class="text-muted text-xs block">普通用户</span>
+            <span class="text-muted text-xs block">{{user.role==="user"?"普通用户":"驾校用户"}}</span>
           </span>
         </a>
         <!-- dropdown -->
@@ -34,14 +34,14 @@
           </li>
           
           <li>
-            <a href>
-              <span class="badge bg-danger pull-right">3</span>
-              通知
+            <a ui-sref="index.myorder">
+              <!-- <span class="badge bg-danger pull-right">3</span> -->
+              我的订单
             </a>
           </li>
           <li class="divider"></li>
           <li>
-            <a ui-sref="access.userSignin">退出</a>
+            <a ng-click="logout()">退出</a>
           </li>
         </ul>
         <!-- / dropdown -->
