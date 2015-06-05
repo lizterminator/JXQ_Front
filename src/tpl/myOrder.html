@@ -24,7 +24,7 @@
                 </div>
                 <div class="panel-body">
                   <table class="table table-bordered">
-                    <thead>
+                    <thead class="bg-success">
                       <td>预约号</td>
                       <td>预约驾校</td>
                       <td>预约时间</td>
@@ -36,7 +36,7 @@
                       <td>{{order.jxname}}</td>
                       <td>{{order.time}}</td>
                       <td>{{order.status}}</td>
-                      <td><button class="btn btn-danger" ng-click="delete($index)">删除</button></td>
+                      <td><button class="btn btn-danger" ng-click="deleteOrder($index)">删除</button></td>
                     </tbody>
                   </table>
                 </div>

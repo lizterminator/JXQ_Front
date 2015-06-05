@@ -19,12 +19,39 @@ angular.module('app').service('requestService', function($http) {
     transformRequest: transFn
   };
 
+  this.deleteOrder = function($scope,orderId){
+    var url = baseUrl + "";
+  };
+  this.getMyOrders = function($scope) {
+    var url = baseUrl + "";
+    // body...
+  };
+  this.getSchoolOrders = function($scope){
+    var url = baseUrl + "";
+  };
+
+  this.checkOrder = function($scope){
+    var url = baseUrl + "";
+  };
+
+  this.getCheckCode = function($scope){
+    var url = baseUrl + "";
+  };
+
+  this.userRegister = function($scope){
+    var url = baseUrl + "";
+  };
+
   this.getUserInfo = function($scope){
     var url = baseUrl + "user/getUserDetail.do";
     $http.get(url).success(function(data) {
         $scope.userDetail = data;
     });
-  }
+  };
+
+  this.getSchoolInfo = function($scope){
+    
+  };
 
   this.userLogin = function($state,$rootScope,params){
     var url = baseUrl + "user/login.do";
@@ -245,13 +272,13 @@ angular.module('app')
         .state('index.profile', {
             url: '/profile',
             templateUrl: 'tpl/profile.html',
-            controller: function(){
-
-            },
+            controller: 'XeditableCtrl',
             resolve: {
               deps: ['$ocLazyLoad',
                 function($ocLazyLoad) {
-                  return $ocLazyLoad.load('xeditable');
+                  return $ocLazyLoad.load('xeditable').then(function(){
+                    return $ocLazyLoad.load('js/controllers/xeditable.js');
+                  });
                 }
               ]
             }
@@ -259,7 +286,7 @@ angular.module('app')
           .state('index.myOrder', {
             url: '/myOrder/:userid',
             templateUrl: 'tpl/myOrder.html',
-            controller: function($scope) {
+            controller: function($scope,requestService) {
               $scope.orders = [{
                 id: '00',
                 jxname: '华英驾校',
@@ -272,7 +299,12 @@ angular.module('app')
                 jxid: '002',
                 time: '2015-3-23',
                 status: '已确认'
-              }]
+              }];
+
+              $scope.deleteOrder = function(index){
+                var orderId = $scope.orders[index].id;
+                requestService.deleteOrder($scope,orderId);
+              };
             }
           })
 

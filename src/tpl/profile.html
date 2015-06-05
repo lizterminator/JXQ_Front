@@ -20,7 +20,7 @@
                                     <label class="col-sm-3 control-label">手机号:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.tel">{{ user.tel}}</span>
+                                            <span editable-text="detail.tel">{{ detail.tel}}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -28,7 +28,7 @@
                                     <label class="col-sm-3 control-label">姓名:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.name">{{ user.name  }}</span>
+                                            <span editable-text="detail.name">{{ detail.name  }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                     <label class="col-sm-3 control-label">性别:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="user.agenda" e-ng-options="s.value as s.text for s in agenda">{{ showAgenda }}</span>
+                                            <span editable-select="detail.gender" e-ng-options="s.value as s.text for s in gender">{{ detail.gender }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -44,23 +44,23 @@
                                     <label class="col-sm-3 control-label">年龄:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.age">{{ user.age  }}</span>
+                                            <span editable-text="detail.age">{{ detail.age  }}</span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="col-sm-3 control-label">密码:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.pwd">{{ user.pwd }}</span>
+                                            <span editable-text="detail.pwd">{{ detail.pwd }}</span>
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">微信号:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.wechat">{{ user.wechat }}</span>
+                                            <span editable-text="detail.wechat">{{ detail.wechat }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -68,16 +68,19 @@
                                     <label class="col-sm-3 control-label">是否是本地:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="user.place" e-ng-options="s.value as s.text for s in statuses">{{ user.place }}</span>
+                                            <span editable-select="detail.place" e-ng-options="s.value as s.text for s in statuses">{{ detail.place }}</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">自我介绍:</label>
+                                    <label class="col-sm-3 control-label">自我简介:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.des">{{ user.des }}</span>
+                                            <a editable-textarea="detail.des" e-rows="7">
+                                                {{ detail.des || 'no description' }}
+                                            </a>
                                         </p>
+                                        
                                     </div>
                                 </div>
                                 <div class="form-group">
