@@ -9,7 +9,7 @@ var registerUrl = "";
 
 angular.module('app').service('requestService', function($http) {
 
-  var baseUrl = "http://192.168.1.107:8080/New_JXQ/";
+  var baseUrl = "http://localhost:8888/jxnet/";
 
   var transFn = function(data) {
     return $.param(data);
@@ -28,10 +28,32 @@ angular.module('app').service('requestService', function($http) {
         //$scope.xajx = data;
     });
   }
-  this.userLogin = function($rootScope,params){
+  this.userLogin = function($state,$rootScope,params){
     var url = baseUrl + "user/login.do";
+    url = "http://localhost:8888/jxnet/userLogin.cu";
 
-    $http.post(uel, params, postCfg)
+    /*$.ajax({
+      url: url,
+      type: 'POST',
+      dataType: 'json',
+      data: params,
+      crossDomain: true,
+      xhrFields: {
+                  withCredentials: true
+              }
+    })
+    .done(function(data) {
+      console.log(data)
+      console.log("success");
+    })
+    .fail(function() {
+      console.log("error");
+    })
+    .always(function() {
+      console.log("complete");
+    });*/
+    
+    $http.post(url, params, postCfg)
     .then(function(response) {
 
       if (response.data.error) {
@@ -116,7 +138,8 @@ angular.module('app')
       function($stateProvider, $urlRouterProvider, $httpProvider, JQ_CONFIG) {
         
         $httpProvider.defaults.withCredentials = true;
-        // $httpProvider.defaults.useXDomain = true;
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
         $urlRouterProvider
           .otherwise('/index/portal');
@@ -388,7 +411,7 @@ angular.module('app')
                     phone: $scope.user.phone,
                     password: $scope.user.password
                   }
-                  requestService.userLogin($rootScope,params);
+                  requestService.userLogin($state,$rootScope,params);
 
                   
                 };
