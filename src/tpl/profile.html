@@ -1,4 +1,4 @@
-<div class="col">
+<div class="col"  ng-show="user.role==='user'">
     <!-- main header -->
     <div class="bg-light lter b-b wrapper-md">
         <div class="row">
@@ -17,34 +17,26 @@
                         <form editable-form name="editableForm" onaftersave="saveUser()">
                             <div class="form-horizontal">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">用户名:</label>
+                                    <label class="col-sm-3 control-label">手机号:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="user.name">{{ user.name || 'empty' }}</span>
+                                            <span editable-text="user.tel">{{ user.tel}}</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">密码:</label>
+                                    <label class="col-sm-3 control-label">姓名:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">{{ showStatus(user) }}</span>
+                                            <span editable-text="user.name">{{ user.name  }}</span>
                                         </p>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">微信号:</label>
+                                    <label class="col-sm-3 control-label">性别:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">{{ showStatus(user) }}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">是否是本地:</label>
-                                    <div class="col-sm-9">
-                                        <p class="form-control-static">
-                                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">{{ showStatus(user) }}</span>
+                                            <span editable-select="user.agenda" e-ng-options="s.value as s.text for s in agenda">{{ showAgenda }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -52,34 +44,50 @@
                                     <label class="col-sm-3 control-label">年龄:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">{{ showStatus(user) }}</span>
+                                            <span editable-text="user.age">{{ user.age  }}</span>
                                         </p>
                                     </div>
-                                </div>                                <div class="form-group">
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">密码:</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static">
+                                            <span editable-text="user.pwd">{{ user.pwd }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">微信号:</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static">
+                                            <span editable-text="user.wechat">{{ user.wechat }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">是否是本地:</label>
+                                    <div class="col-sm-9">
+                                        <p class="form-control-static">
+                                            <span editable-select="user.place" e-ng-options="s.value as s.text for s in statuses">{{ user.place }}</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="col-sm-3 control-label">自我介绍:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">{{ showStatus(user) }}</span>
+                                            <span editable-text="user.des">{{ user.des }}</span>
                                         </p>
                                     </div>
-                                </div>                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">性别:</label>
-                                    <div class="col-sm-9">
-                                        <p class="form-control-static">
-                                            <span editable-select="user.status" e-ng-options="s.value as s.text for s in statuses">{{ showStatus(user) }}</span>
-                                        </p>
-                                    </div>
-                                </div>                                
+                                </div>
                                 <div class="form-group">
                                     <div class="col-sm-9 col-sm-offset-3">
                                         <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">编辑
                                         </button>
                                         <!-- buttons to submit / cancel form -->
                                         <span ng-show="editableForm.$visible">
-                    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">保存
-                    </button>
-                    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">取消</button>
-                  </span>
+                                        <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">保存</button>
+                                        <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">取消</button></span>
                                     </div>
                                 </div>
                             </div>
@@ -89,4 +97,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="text-center" ng-include="'tpl/denied.html'">
+    {% include 'denied.html' %}
 </div>

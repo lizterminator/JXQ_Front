@@ -1,7 +1,7 @@
 <div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
     app.settings.asideFolded = false; 
     app.settings.asideDock = false;
-  ">
+  " ng-show="user.role==='user'">
   <!-- main -->
   <div class="col">
     <!-- main header -->
@@ -65,4 +65,8 @@
   <!-- right col -->
 
   <!-- / right col -->
+</div>
+
+<div class="text-center" ng-include="'tpl/denied.html'">
+    {% include 'denied.html' %}
 </div>
