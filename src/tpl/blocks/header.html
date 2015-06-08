@@ -64,12 +64,11 @@
             </a>
             <ul class="dropdown-menu" role="menu">
                 <li><a ui-sref="access.schoolSignin">登录</a></li>
-                <li>
+                <!-- <li>
                     <a ui-sref="access.schoolSignup">
-                        <!-- <span class="badge bg-info pull-right">5</span> -->
                         <span>注册</span>
                     </a>
-                </li>
+                </li> -->
                 <li class="divider"></li>
                 <li><a ui-sref="index.manager">预约管理</a></li>
             </ul>
@@ -77,11 +76,11 @@
     </ul>
     <!-- / link and dropdown -->
     <!-- search form -->
-    <div ng-controller="searchCtrl">
-        <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" target=".navbar-collapse" ng-submit="search()" role="search">
+    <div>
+        <form class="navbar-form navbar-form-sm navbar-left shift" ui-shift="prependTo" target=".navbar-collapse" ng-submit="goSearch()" role="search">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="text" ng-model="keyword" typeahead="jx.schoolName for jx in xajx | filter:$viewValue | limitTo:8" class="form-control input-sm bg-light no-border rounded padder" placeholder="搜索驾校...">
+                    <input type="text" id="keyword" class="form-control input-sm bg-light no-border rounded padder" placeholder="搜索驾校...">
                     <span class="input-group-btn">
                 <button type="submit" class="btn btn-sm bg-light rounded"><i class="fa fa-search"></i></button>
               </span>
@@ -164,7 +163,7 @@
                 <img src="img/a0.jpg" alt="userPic">
                 <i class="on md b-white bottom"></i>
               </span>
-                <span class="hidden-sm hidden-md">{{user.name}}</span> <b class="caret"></b>
+                <span class="hidden-sm hidden-md">{{user.name || user.phone}}</span> <b class="caret"></b>
             </a>
             <!-- dropdown -->
             <ul class="dropdown-menu animated fadeInRight w">
@@ -185,11 +184,11 @@
                         <span>我的订单</span>
                     </a>
                 </li>
-                <li ng-show="user.role==='school'">
+                <!-- <li ng-show="user.role==='school'">
                     <a ui-sref="index.jxEdit">
                         <span>驾校发布管理</span>
                     </a>
-                </li>
+                </li> -->
                 <li ng-show="user.role==='school'">
                     <a ui-sref="index.manager">
                         <span>订单管理</span>

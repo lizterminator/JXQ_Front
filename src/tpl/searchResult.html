@@ -1,0 +1,70 @@
+<div class="bg-light lter b-b wrapper-md hidden-print">
+  <h1 class="m-n font-thin h3">搜索结果</h1>
+</div>
+<div>
+        <ul class="breadcrumb bg-white b-a">
+          <li><a ui-sref="index.portal"><i class="fa fa-home"></i> 首页</a></li>
+          <li class="active"><a ui-sref="index.xajx({pageId:1})">西安驾校</a></li>
+        </ul>
+      </div>
+  
+
+<div class="wrapper-md">
+  <div class="row row-sm">
+    <div class="col-lg-3 col-md-4 col-sm-6" ng-repeat="jx in searchResult">
+      <div class="panel b-a">
+        <div class="panel-heading text-center bg-info no-border">
+          <h4 class="text-u-c m-b-none">{{jx.schoolName}}</h4>
+          <h2 class="m-t-none">
+            <sup class="pos-rlt" style="top:-2px">本地 <span class="text-danger">{{jx.localPrice}}</span> </sup>
+            <sup class="pos-rlt" style="top:-2px">外地 <span class="text-danger">{{jx.foreignPrice}}</span></sup>
+          </h2>
+        </div>
+        <img ng-src="{{jx.indexPic}}" alt="index picture of jx" class="img-full">
+        
+        <ul class="list-group  no-borders m-t-sm">
+          <li class="list-group-item">
+            <i class="icon-check text-success m-r-xs"></i> 地址 {{jx.address}}
+          </li>
+          
+          <li class="list-group-item">
+            <i class="icon-check text-success m-r-xs"></i> {{jx.orders}}人已预约
+          </li>
+          <li class="list-group-item">
+            <i class="icon-check text-success m-r-xs"></i> 信誉保障
+          </li>
+          
+        </ul>
+        <div class="panel-footer text-center b-t m-t bg-light lter">
+          <div class="m-t-sm">{{jx.intro}}</div>
+          <a ui-sref="index.jx({jxId:jx.id})" class="btn btn-info font-bold m">预约走你</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+ 
+</div>
+
+<!-- pagination -->
+      <!-- <div >
+      
+        <pagination 
+          ng-model="currentPage"
+          total-items="jxs.length"
+          max-size="maxSize"  
+          boundary-links="true">
+        </pagination>
+        <pager total-items="totalItems" ng-model="currentPage"></pager>
+        
+      </div> -->
+      
+      <!-- <div class="text-center m-t-lg m-b-lg">
+        <ul class="pagination pagination-md">
+          <li><a href><i class="fa fa-chevron-left"></i></a></li>
+         <li  ng-repeat="x in totalPage track by $index"><a ui-sref="index.xajx({pageId:$index+1})">{{$index+1}}</a></li>          
+          <li><a href><i class="fa fa-chevron-right"></i></a></li>
+        </ul>
+      </div> -->
+
+      <!-- / pagination -->

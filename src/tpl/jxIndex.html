@@ -108,13 +108,242 @@
           <!-- <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
             {{tab.content}}
           </tab> -->
-          <tab heading="驾校承诺" class="tab-fixheight">
-            驾校的承诺
+          <tab heading="驾校简介" class="tab-fixheight">
+              <!-- .col -->
+  <div class="col">
+    <div class="wrapper">
+      <div class="row">
+      <div class="col-md-4 col-sm-12 col-xs-12">
+      <ul class="timeline">
+        <li class="tl-header">
+          <div class="btn btn-info">Start</div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-wrap b-info">
+            <span class="tl-date">科目一平均<span class="text-info">{{jx.durationOne}}</span>天</span>
+            <div class="tl-content panel padder b-a w-md w-auto-xs">
+              <span class="arrow left pull-up"></span>
+              <div class="text-lt m-b-sm">科目一通过率</div>
+              <div class="panel-body pull-in b-t b-light">
+                <div class="inline m-t-sm">
+                  <div ui-jq="easyPieChart" ui-options="{
+                      percent: '{{jx.passRateOne}}',
+                      lineWidth: 3,
+                      trackColor: '{{app.color.light}}',
+                      barColor: '{{app.color.info}}',
+                      scaleColor: false,
+                      color: '#fff',
+                      size: 65,
+                      lineCap: 'butt',
+                      rotate: 45,
+                      animate: 1000
+                    }">
+                    <div>
+                      <span class="step">{{jx.passRateOne}}</span>%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- <li class="tl-item">
+          <div class="tl-wrap b-info">
+            <span class="tl-date">{{durationOne}}</span>
+            <div class="tl-content panel padder b-a">
+              <span class="arrow left pull-up"></span>
+              <div>科目一</div>
+            </div>
+          </div>
+        </li> -->
+        <li class="tl-item">
+          <div class="tl-wrap b-light">
+            <span class="tl-date">科目二平均<span class="text-black">{{jx.durationTwo}}</span>天</span>
+            <div class="tl-content panel padder b-a w-md w-auto-xs">
+              <span class="arrow left pull-up"></span>
+              <div class="text-lt m-b-sm">科目二通过率</div>
+              <div class="panel-body pull-in b-t b-light">
+                <div class="inline m-t-sm">
+                  <div ui-jq="easyPieChart" ui-options="{
+                      percent: '{{jx.passRateTwo}}',
+                      lineWidth: 3,
+                      trackColor: '{{app.color.light}}',
+                      barColor: '{{app.color.black}}',
+                      scaleColor: false,
+                      color: '#fff',
+                      size: 65,
+                      lineCap: 'butt',
+                      rotate: 45,
+                      animate: 1000
+                    }">
+                    <div>
+                      <span class="step">{{jx.passRateTwo}}</span>%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </li>
+        <li class="tl-item tl-left">
+          <div class="tl-wrap b-primary">
+            <span class="tl-date">科目三平均<span class="text-primary">{{jx.durationThree}}</span>天</span>
+            <div class="tl-content panel padder b-a w-md w-auto-xs">
+              <span class="arrow left pull-up"></span>
+              <div class="text-lt m-b-sm">科目三通过率</div>
+              <div class="panel-body pull-in b-t b-light">
+                <div class="inline m-t-sm">
+                  <div ui-jq="easyPieChart" ui-options="{
+                      percent: '{{jx.passRateThree}}',
+                      lineWidth: 3,
+                      trackColor: '{{app.color.light}}',
+                      barColor: '{{app.color.primary}}',
+                      scaleColor: false,
+                      color: '#fff',
+                      size: 65,
+                      lineCap: 'butt',
+                      rotate: 45,
+                      animate: 1000
+                    }">
+                    <div>
+                      <span class="step">{{jx.passRateThree}}</span>%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-wrap b-success">
+            <span class="tl-date">科目四平均<span class="text-success">{{jx.durationFour}}</span>天</span>
+            <div class="tl-content panel padder b-a w-md w-auto-xs">
+              <span class="arrow left pull-up"></span>
+              <div class="text-lt m-b-sm">科目四通过率</div>
+              <div class="panel-body pull-in b-t b-light">
+                <div class="inline m-t-sm">
+                  <div ui-jq="easyPieChart" ui-options="{
+                      percent: '{{jx.durationFour}}',
+                      lineWidth: 3,
+                      trackColor: '{{app.color.light}}',
+                      barColor: '{{app.color.success}}',
+                      scaleColor: false,
+                      color: '#fff',
+                      size: 65,
+                      lineCap: 'butt',
+                      rotate: 45,
+                      animate: 1000
+                    }">
+                    <div>
+                      <span class="step">{{jx.passRateFour}}</span>%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-header">
+          <div class="btn btn-sm btn-default btn-rounded b-success">End</div>
+        </li>
+        <!-- <li class="tl-item tl-left">
+          <div class="tl-wrap b-primary">
+            <span class="tl-date">04.2014</span>
+            <div class="tl-content panel padder b-a block">
+              <span class="arrow left pull-up hidden-left"></span>
+              <span class="arrow right pull-up visible-left"></span>
+              <div class="text-lt m-b-sm">Block</div>
+              <div class="panel-body pull-in b-t b-light">
+                <p>I'm working on a realy amazing application, It will be available soon. here is a little tease. </p>
+                <div class="m-b m-t">                  
+                  <a href class="avatar thumb-xs m-r-xs">
+                    <img src="img/a7.jpg" alt="...">
+                    <i class="on b-white left"></i>
+                  </a>
+                  <a href class="avatar thumb-xs m-r-xs">
+                    <img src="img/a8.jpg" alt="...">
+                    <i class="busy b-white left"></i>
+                  </a>
+                  <a href class="avatar thumb-xs m-r-xs">
+                    <img src="img/a9.jpg" alt="...">
+                    <i class="away b-white left"></i>
+                  </a>
+                  <a href class="avatar thumb-xs m-r-xs">
+                    <img src="img/a10.jpg" alt="...">
+                    <i class="on b-white left"></i>
+                  </a>
+                  <a href class="btn btn-success btn-rounded font-bold"> +152 </a>
+                  <span class="h5 m-l-sm">Liked</span>              
+                </div>
+                <div class="panel panel-default m-t-md m-b-n-sm pos-rlt">
+                  <span class="arrow top pull-left"></span>
+                  <form>
+                    <textarea class="form-control no-border" rows="3" placeholder="Your comment..."></textarea>
+                  </form>
+                  <div class="panel-footer bg-light lter">
+                    <button class="btn btn-info pull-right btn-sm">Comment</button>
+                    <ul class="nav nav-pills nav-sm">
+                      <li><a href><i class="fa fa-camera text-muted"></i></a></li>
+                      <li><a href><i class="fa fa-video-camera text-muted"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>             
+            </div>
+          </div>
+        </li>
+        <li class="tl-header">
+          <div class="btn btn-sm btn-default btn-rounded">2014</div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-wrap">
+            <span class="tl-date">10.08.2013</span>
+            <div class="tl-content panel padder b-a">
+              <span class="arrow left pull-up hidden-left"></span>
+              <span class="arrow right pull-up visible-left"></span>
+              <div class="text-lt">A good story to hear.</div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-header">
+          <div class="btn btn-icon btn-rounded btn-default"><i class="fa fa-twitter"></i></div>
+        </li>
+        <li class="tl-item tl-left">
+          <div class="tl-wrap b-white">
+            <span class="tl-date">5.07.2013</span>
+            <div class="tl-content panel padder b-a">
+              <span class="arrow left pull-up hidden-left"></span>
+              <span class="arrow right pull-up visible-left"></span>
+              <div class="text-lt">Yesterday is History</div>
+            </div>
+          </div>
+        </li>
+        <li class="tl-header">
+          <div class="btn btn-sm btn-default btn-rounded">more</div>
+        </li> -->
+      </ul>
+      </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <h3>师资力量</h3>
+          {{jx.teacherResource}}
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <h3>硬件资源</h3>
+          {{jx.hardwareResource}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /.col -->  
           </tab>
           <tab heading="驾校风采" class="tab-fixheight">
-            <img src="img/c2.jpg">
-            <img src="img/c1.jpg">
-            <img src="img/c3.jpg">
+            <div class="wrapper-md">
+              <img src="img/c2.jpg">
+              <img src="img/c1.jpg">
+              <img src="img/c3.jpg">
+            </div>
           </tab>
           <tab heading="驾校位置" class="tab-fixheight">
             <iframe width="604" height="525" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{jx.mapUrl | trustAsResourceUrl}}"></iframe>

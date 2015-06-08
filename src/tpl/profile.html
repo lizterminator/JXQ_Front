@@ -14,37 +14,37 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">个人信息</div>
                     <div class="panel-body">
-                        <form editable-form name="editableForm" onaftersave="saveUser()">
+                        <form editable-form name="editableForm" ng-submit="saveUser()">
                             <div class="form-horizontal">
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">手机号:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="detail.tel">{{ detail.tel}}</span>
+                                            <span >{{ detail.phone}}</span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="col-sm-3 control-label">姓名:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="detail.name">{{ detail.name  }}</span>
+                                            <span editable-text="detail.name" id="detailName">{{ detail.name  }}</span>
                                         </p>
                                     </div>
-                                </div>
-                                <div class="form-group">
+                                </div> -->
+                                <!-- <div class="form-group">
                                     <label class="col-sm-3 control-label">性别:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
                                             <span editable-select="detail.gender" e-ng-options="s.value as s.text for s in gender">{{ detail.gender }}</span>
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">年龄:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="detail.age">{{ detail.age  }}</span>
+                                            <span editable-text="detail.age">{{ detail.age===0?'':detail.age  }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -60,18 +60,18 @@
                                     <label class="col-sm-3 control-label">微信号:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-text="detail.wechat">{{ detail.wechat }}</span>
+                                            <span editable-text="detail.weChat">{{ detail.weChat }}</span>
                                         </p>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <!-- <div class="form-group">
                                     <label class="col-sm-3 control-label">是否是本地:</label>
                                     <div class="col-sm-9">
                                         <p class="form-control-static">
-                                            <span editable-select="detail.place" e-ng-options="s.value as s.text for s in statuses">{{ detail.place }}</span>
+                                            <span editable-select="detail.isLocal" e-ng-options="s.value as s.text for s in statuses">{{ detail.isLocal }}</span>
                                         </p>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">自我简介:</label>
                                     <div class="col-sm-9">
