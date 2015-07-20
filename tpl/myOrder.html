@@ -1,0 +1,72 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false; 
+    app.settings.asideDock = false;
+  " ng-show="user.role==='user'">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black">我的订单</h1>
+        </div>
+
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md">
+      <!-- stats -->
+      <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">订单详情</h3>
+                </div>
+                <div class="panel-body">
+                  <table class="table table-bordered">
+                    <thead class="bg-success">
+                      <td>预约号</td>
+                      <td>预约驾校</td>
+                      <td>预约时间</td>
+                      <td>状态</td>
+                      <td>操作</td>
+                    </thead>
+                    <tbody ng-repeat="order in orders">
+                      <td>{{order.orderNumber}}</td>
+                      <td>{{order.schoolName}}</td>
+                      <td>{{order.createTime}}</td>
+                      <td>{{order.status}}</td>
+                      <td><button class="btn btn-danger" ng-disabled="order.status==='已受理'" ng-click="cancelOrder($index)">取消订单</button></td>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+
+        </div>
+
+
+      </div>
+      <!-- / stats -->
+
+      <!-- service -->
+
+      <!-- / service -->
+
+      <!-- tasks -->
+
+      <!-- / tasks -->
+
+      <!-- tasks -->
+
+      <!-- / tasks -->
+    </div>
+  </div>
+  <!-- / main -->
+  <!-- right col -->
+
+  <!-- / right col -->
+</div>
+
+<div class="text-center" ng-include="'tpl/denied.html'">
+    {% include 'denied.html' %}
+</div>

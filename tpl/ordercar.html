@@ -1,0 +1,303 @@
+
+<!-- tasks -->
+      <div class="panel wrapper ">
+      	<div class="row">
+          <div class="col-md-12 b-r b-light no-border-xs wrapper-lg" >
+          	<div class="bg-light lter b-b wrapper-md">
+  				<h1 class="m-n font-thin h3">我要约车</h1>
+			</div>
+      <script type="text/javascript">
+        var user_choice = {
+          user_id:"",
+          user_name:"",
+          user_area:"",
+          user_sch:"",
+          user_jx:"",
+          user_date:0,
+          user_month:"",
+          user_year:0,
+          user_timelong:"",
+          user_coach:""
+        }
+
+        $(function() {
+          $.ajax({
+            type:"GET",
+            url:"jiaxiao.json",
+            data:'',
+            dataType:"text",
+            success:function(data){
+              
+               var obj = [];
+                var jiaxiao_info = JSON.parse(data);
+                
+                obj[0]=document.getElementById('jiaxiao_area');
+                obj[1]=document.getElementById('jiaxiao_sch');
+                obj[2]=document.getElementById('jiaxiao_name');
+                for(var j =0; j < jiaxiao_info.length;j++) {
+                  for(var i= 0 ; i< jiaxiao_info[j].length ;i++) {
+
+                    obj[j].add(new Option(jiaxiao_info[j][i],jiaxiao_info[j][i]));
+
+                  }
+
+                //$("#jiaxiao_sch").remove(); 
+              }
+            },
+            error:function() {
+
+              alert("出错了");
+            }
+          });
+
+        });
+      </script>
+			<div class="wrapper-md">
+  				<tabset class="tab-container" ng-init="steps={percent:20, step1:true, step2:false, step3:false}">
+    				<tab heading="step 1 选择地区" active="steps.step1" select="steps.percent=20" >
+      					<h4>我要约车--><a class="font-thin text-muted">选择驾校</a></h4>
+      					<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+     					 
+     					 <form name="step1" class="form-validation">
+        					<div class="row">
+          						<div class="col-md-12 b-r b-light no-border-xs wrapper-lg" >
+            
+           						 <div class=" w-full  padder-lg wrapper-lg">
+            	
+            						<div class="form-group">
+            							<div class="col-md-4 b-l b-light no-border-xs">
+         									<div class="col-sm-10">
+         										<label class=" control-label">选择地区</label><br>
+            									<select  class="w-md jy_select" name="chose_area" id="jiaxiao_area" required onchange="choose_school(value)">
+            										
+            									</select>
+                              
+         			 						</div>
+        								</div>
+        								<div class="col-md-4 b-l b-light no-border-xs">
+         									<div class="col-sm-10">
+         										<label class=" control-label">选择学校</label><br>
+            									<select  class="w-md jy_select" name="chose_school"  id="jiaxiao_sch" required onchange="choose_jx(value)">
+            										
+            									</select>
+         			 						</div>
+        								</div>
+        								<div class="col-md-4 b-l b-light no-border-xs">
+         									<div class="col-sm-10">
+         										<label class=" control-label">选择驾校</label><br>
+            									<select  class="w-md jy_select" name="chose_jx" id="jiaxiao_name" required>
+            										
+            									</select>
+         			 						</div>
+        								</div>
+        								
+            						</div>
+            					</div>
+            				</div>
+            			</div>	
+                  <script type="text/javascript">
+                                function choose_school(data) {
+                                   // alert(data);
+
+                                   $.ajax({
+                                      type:"GET",
+                                      data:'',
+                                      dataType:"text",
+                                      url:"school.json",
+                                      success:function(mes) {
+                                        
+                                        var sch = JSON.parse(mes);
+                                        $("#jiaxiao_sch").empty();
+                                        //alert(sch.length);
+                                        for(var i= 0 ; i< sch.length ;i++) {
+                                         // alert(sch[i]);
+                                         
+                                         // obj[1].options.length=0;
+                                        // $("#jiaxiao_sch").append("<option value='"+sch[i]+"'>"+sch[i]+"</option>");
+
+                                        document.getElementById('jiaxiao_sch').add(new Option(sch[i],sch[i]));
+                                        }
+                                      },
+                                      error:function() {
+                                        alert("出错了");
+                                      }
+
+                                   });
+
+                                }
+                                function choose_jx(data) {
+                                  
+                                  $.ajax({
+                                    type:"GET",
+                                    url:"jx.json",
+                                    data:"",
+                                    dataType:"text",
+                                    success:function(mes) {
+                                      var obj = JSON.parse(mes);
+                                      $("#jiaxiao_name").empty();
+                                      for(var i = 0; i < obj.length; i++) {
+                                        document.getElementById('jiaxiao_name').add(new Option(obj[i],obj[i]));
+                                      }
+                                    },
+                                    error:function() {
+                                      alert("出错了");
+                                    }
+                                  });
+
+                                }
+                                
+                              </script>
+        				<div class="m-t m-b">
+          					<button type="submit" ng-disabled="step1.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step2=true" onclick="sub_jxinfo()">Next</button>
+        				</div>
+                <script type="text/javascript">
+                  function sub_jxinfo() {
+                    user_choice.user_area = $("#jiaxiao_area").val();
+                    user_choice.user_sch = $("#jiaxiao_sch").val();
+                    user_choice.user_jx = $("#jiaxiao_name").val();
+                   // console.log(user_choice);
+
+                  }
+                </script>
+      				</form>
+    				</tab>
+    				<tab heading="Step 2 选择时间" disabled="step1.$invalid" active="steps.step2" select="steps.percent=50" onclick="sub_jxinfo()">
+      					<form name="step2" class="form-validation" >
+        					<h4>我要约车-->选择驾校--><a class="font-thin text-muted">选择时间</a></h4>
+        					<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+        					<div class="form-group" style="height:200px;">
+          						
+         						 <div class="col-sm-10" ng-controller="DatepickerDemoCtrl">
+         						 	<label >练车日期</label><br>
+            						<div class="input-group w-md">
+             							<input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" datepicker-options="dateOptions" ng-required="true" close-text="关闭" id="order_date"/>
+                						<span class="input-group-btn">
+                								<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                						</span>
+            						</div>
+
+                        <div class="radio">
+                          <label class="i-checks">
+                            <input type="radio" id="order_timelong" name="car_time" value="morning"  > 
+                            <i></i>
+                          上午
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label class="i-checks">
+                            <input type="radio" id="order_timelong" name="car_time" value="afternoon"  >
+                            <i></i>
+                            下午
+                          </label>
+                        </div>
+                        <div class="radio">
+                          <label class="i-checks">
+                            <input type="radio" id="order_timelong" name="car_time" value="allday" checked >
+                            <i></i>
+                            全天
+                          </label>
+                        </div>
+            					</div>
+        					</div>
+        					<div class="m-t m-b">
+          						<button type="button" class="btn btn-default btn-rounded" ng-click="steps.step1=true">Prev</button>
+          						<button type="submit" ng-disabled="step2.$invalid" class="btn btn-default btn-rounded" ng-click="steps.step3=true" onclick="getinfo()">Next</button>
+        					</div>
+      					</form>
+                <script type="text/javascript">
+                function getinfo() {
+                    var time_str = document.getElementById("order_date").value;
+                    var time_arr = time_str.split("-");
+                    
+                    var order_time = {date:0,month:"",year:0,timelong:0,sch:"",jx:""};
+                    order_time.date = time_arr[0];
+                    order_time.month = time_arr[1];
+                    order_time.year = time_arr[2];
+                    order_time.timelong =  $("input[type=radio][checked]").val();
+                    order_time.sch = user_choice.user_sch;
+                    order_time.jx = user_choice.user_jx;
+                    //console.log(order_time);
+                    user_choice.user_date = order_time.date;
+                    user_choice.user_month = order_time.month;
+                    user_choice.user_year = order_time.year;
+                    user_choice.user_timelong = order_time.timelong;
+                    //console.log(user_choice);
+                    $.ajax({
+                        type:"GET",
+                        url:"choseteacher.json",
+                        data:'',
+                        dataType:"text",
+                        
+                        success:function(json) {
+                          var obj = jQuery.parseJSON(json);
+                          $("#car_content").empty();
+                        //  var car_model =  $(".teacher_options").clone(true);
+                          for(var carid_num = 0; carid_num<obj.length;carid_num++) {
+                            //obj_car[carid_num] = car_model;
+                           // alert(obj_car[carid_num] );
+                           
+                           $("#car_content").append("<div id=coach_id"+(carid_num+1)+" class='teacher_options' > <h3><span>"
+                            +(carid_num+1)+"</span>号专车 </h3> <img src='img/car.png'> <h4>教练："+obj[carid_num].coach+"</h4><h4>车牌号："+obj[carid_num].car_number+"</h4><h4>已预约人数："+ obj[carid_num].ordered_peo+"</h4></div>");
+                           // alert("dd");
+
+                          }
+                          for(var carid_num = 0; carid_num<obj.length;carid_num++) {
+                            $("#coach_id"+carid_num).attr("value",obj[carid_num].coach);
+                          }
+                          
+                            
+                        },
+                        error:function () {
+                          alert("出错了");
+                        }
+                    });
+                    
+
+                }
+                </script>
+    				</tab> 
+    				<tab heading="Step 3 选择教练" disabled="step2.$invalid" active="steps.step3" select="steps.percent=75" onclick="getinfo()">
+      					<h4>我要约车-->选择驾校-->选择时间--><a class="font-thin text-muted">选择教练</a></h4>
+      					<progressbar value="steps.percent" class="progress-xs" type="success"></progressbar>
+                <div id="car_content">
+      					   
+                </div>
+                <script type="text/javascript">
+                  $("#car_content").on('click',".teacher_options",function() {
+                      user_choice.user_coach = $(this).attr("value");
+                     
+                      $(".teacher_options").removeClass("order_chosen");
+                      $(this).addClass("order_chosen");
+                  });
+                </script>
+      					<div class="m-t m-b changerow">
+        					<button type="button" class="btn btn-default btn-rounded" ng-click="steps.step2=true" onclick="clearcar()">Prev</button>
+        					<button type="button" class="btn btn-default btn-rounded" id="jx_sub" ng-click="steps.percent=100" onclick="sub_choice()">Click me to Finish</button>
+      					</div>
+                <script type="text/javascript">
+                  function clearcar() {
+                    $("#car_content").empty();
+
+                  }
+                  function sub_choice() {
+
+                    if(!user_choice.user_coach) {
+                      alert("请选择一位教练");
+
+                      
+                    }else {
+                      console.log(user_choice);
+                      alert("预约申请已提交");
+                    }
+                    
+
+                  }
+                </script>
+    				</tab>
+  				</tabset>
+			</div>
+          </div>
+        </div>
+        
+      </div>
+      <!-- / tasks -->

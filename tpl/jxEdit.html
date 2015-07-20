@@ -1,0 +1,289 @@
+<div class="col" >
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <h1 class="m-n font-thin h3 text-black">发布&修改驾校</h1>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-md">
+        <!-- stats -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">基本信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" ng-submit="saveSchoolDetail()">
+                            
+                            <div class="form-group">
+                                <label for="plane" class="col-sm-4 control-label">座机号码</label>
+                                <div class="col-md-3">
+                                    <input type="text" name="plane" placeholder="" class="form-control" ng-model="info.plane" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mail" class="col-sm-4 control-label">邮箱</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="mail"  ng-model="info.mail" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="col-sm-4 control-label">地址</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="address" placeholder="" ng-model="info.address" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="localPrice" class="col-sm-4 control-label">本地价格</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="localPrice" placeholder="" ng-model="info.localPrice" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="foreignPrice" class="col-sm-4 control-label">异地价格</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="foreignPrice" placeholder="" ng-model="info.foreignPrice" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="otherPrice" class="col-sm-4 control-label">额外费用</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="otherPrice" placeholder="" ng-model="info.otherPrice" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="studentPerCar" class="col-sm-4 control-label">每辆车的人数</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="studentPerCar" ng-model="info.studentPerCar" placeholder="" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="passRateOne" class="col-sm-4 control-label">科目一通过率</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="passRateOne" ng-model="info.passRateOne" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="passRateTwo" class="col-sm-4 control-label">科目二通过率</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="passRateTwo" ng-model="info.passRateTwo" placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="passRateThree" class="col-sm-4 control-label">科目三通过率</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="passRateThree" ng-model="info.passRateThree"  placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="passRateFour" class="col-sm-4 control-label">科目四通过率</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="passRateFour" ng-model="info.passRateFour"   placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="durationOne" class="col-sm-4 control-label">科目一平均时间</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="durationOne" ng-model="info.durationOne"    placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="durationTwo" class="col-sm-4 control-label">科目二平均时间</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="durationTwo" ng-model="info.durationTwo"   placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="durationThree" class="col-sm-4 control-label">科目三平均时间</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="durationThree" ng-model="info.durationThree"   placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="durationFour" class="col-sm-4 control-label">科目四平均时间</label>
+                                <div class="col-md-3">
+                                    <input type="text" class="form-control" name="durationFour" ng-model="info.durationFour"   placeholder="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="teacherResource" class="col-sm-4 control-label">师资力量描述</label>
+                                <div class="col-md-3">
+                                    <textarea rows="8" class="form-control" name="teacherResource" ng-model="info.teacherResource"   placeholder="" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hardwareResource" class="col-sm-4 control-label">硬件资源描述</label>
+                                <div class="col-md-3">
+                                    <textarea rows="8" class="form-control" name="hardwareResource" ng-model="info.hardwareResource"   placeholder="" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="address" class="col-sm-4 control-label"></label>
+                                <div class="col-md-3">
+                                    <input  type="submit" class="btn btn-warning " value="保存信息" >
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">驾校图片</h3>
+                    </div>
+                    <div class="panel-body">
+                    
+                    
+                 <form class="form-horizontal post-img" method="post" action="http://upload.qiniu.com/"
+                     enctype="multipart/form-data">
+                          <div class="form-group">
+                              <label class="col-sm-2 control-label" for="IDcard" >负责人身份证</label>
+                              <div class="col-sm-10">
+                                <div class="img-preview" id="IDcard">
+                                    <img id="head_IDcard" ng-src="{{info.img_IDcard}}">
+                                </div>
+                                <input type="file" name="file" onchange="previewImage(this,'IDcard','head_IDcard')" />  
+                                <input name="key" type="hidden" class="IDcardPicName">
+                                <input name="token" type="hidden" >
+                                  <!-- <input name="file" type="file" /> -->
+                                <input name="x:location" type="hidden" value="IDcard" />
+                                <input name="x:name" class="IDcardPicName" type="hidden">
+                                <input name="x:schoolID" class="schoolID" type="hidden">  
+                                <input name="accept" type="hidden" />
+                                <input type="submit" value="上传" >
+                                
+                              </div>
+                            </div>
+                            
+                        </form>
+                            <hr>
+                    
+                    
+                        <form class="form-horizontal post-img" method="post" action="http://upload.qiniu.com/"
+                     enctype="multipart/form-data">
+                        
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" for="businessLicense" >营业执照</label>
+                              <div class="col-sm-10">
+                                <div class="img-preview" id="businessLicense">
+                                    <img id="head_businessLicense" ng-src="{{info.img_license}}">
+                                </div>
+                                <input type="file" name="file" onchange="previewImage(this,'businessLicense','head_businessLicense')" />  
+                                <input name="key" type="hidden" class="blPicName">
+                                <input name="token" type="hidden" >
+                                  <!-- <input name="file" type="file" /> -->
+                                <input name="x:location" type="hidden" value="license">
+                                <input name="x:name" class="blPicName" type="hidden">
+                                <input name="x:schoolID" class="schoolID" type="hidden">  
+                                <input name="accept" type="hidden" />
+                                <input type="submit" value="上传" >
+                              </div>
+                            </div>
+                           </from>
+                           <hr>
+     
+                        <form class="form-horizontal post-img" method="post" action="http://upload.qiniu.com/"
+                     enctype="multipart/form-data" >
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" >主页图片(一张)</label>
+                              <div class="col-sm-10">
+                                <div class="img-preview" id="img_index">
+                                    <img id="head_img_index" ng-src="{{info.img_index}}">
+                                </div>
+                                <input type="file" name="file" onchange="previewImage(this,'img_index','head_img_index')" />  
+                                <input name="key" type="hidden" class="indexPicName">
+                                <input name="token" type="hidden" >
+                                  <!-- <input name="file" type="file" /> -->
+                                <input name="x:location" type="hidden" value="index">
+                                <input name="x:name" class="indexPicName" type="hidden">
+                                <input name="x:schoolID" class="schoolID" type="hidden">  
+                                <input name="accept" type="hidden" />
+                                <input type="submit" value="上传" >
+                              </div>
+                            </div>
+                        </form>
+                        <hr>
+                        <form class="form-horizontal post-img" method="post" action="http://upload.qiniu.com/"
+                     enctype="multipart/form-data">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" >轮播图片(一)</label>
+                              <div class="col-sm-10">
+                                <div class="img-preview" id="img_carousel_1">
+                                    <img id="head_img_carousel_1" ng-src="{{info.img_carousel[0]}}">
+                                </div>
+                                <input type="file" name="file" onchange="previewImage(this,'img_carousel_1','head_img_carousel_1')" />  
+                                <input name="key" type="hidden" class="carouselPicName_1">
+                                <input name="token" type="hidden" >
+                                  <!-- <input name="file" type="file" /> -->
+                                <input name="x:location" type="hidden" value="carousel">
+                                <input name="x:name" class="carouselPicName_1" type="hidden">
+                                <input name="x:schoolID" class="schoolID" type="hidden">  
+                                <input name="accept" type="hidden" />
+                                <input type="submit" value="上传" >
+                                
+                              </div>
+                            </div>
+                            
+                        </form>
+                        <hr>
+                         <form class="form-horizontal post-img" method="post" action="http://upload.qiniu.com/"
+                     enctype="multipart/form-data">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" >轮播图片(二)</label>
+                              <div class="col-sm-10">
+                                <div class="img-preview" id="img_carousel_2">
+                                    <img id="head_img_carousel_2" ng-src="{{info.img_carousel[1]}}">
+                                </div>
+                                <input type="file" name="file" onchange="previewImage(this,'img_carousel_2','head_img_carousel_2')" />  
+                                <input name="key" type="hidden" class="carouselPicName_2">
+                                <input name="token" type="hidden" >
+                                  <!-- <input name="file" type="file" /> -->
+                                <input name="x:location" type="hidden" value="carousel">
+                                <input name="x:name" class="carouselPicName_2" type="hidden">
+                                <input name="x:schoolID" class="schoolID" type="hidden">  
+                                <input name="accept" type="hidden" />
+                                <input type="submit" value="上传" >
+                                
+                              </div>
+                            </div>
+                            
+                        </form> 
+                        <hr>
+                        <form class="form-horizontal post-img" method="post" action="http://upload.qiniu.com/"
+                     enctype="multipart/form-data">
+                            <div class="form-group">
+                              <label class="col-sm-2 control-label" >轮播图片(三)</label>
+                              <div class="col-sm-10">
+                                <div class="img-preview" id="img_carousel_3">
+                                    <img id="head_img_carousel_3" ng-src="{{info.img_carousel[2]}}">
+                                </div>
+                                <input type="file" name="file" onchange="previewImage(this,'img_carousel_3','head_img_carousel_3')" />  
+                                <input name="key" type="hidden" class="carouselPicName_3">
+                                <input name="token" type="hidden" >
+                                  <!-- <input name="file" type="file" /> -->
+                                <input name="x:location" type="hidden" value="carousel">
+                                <input name="x:name" class="carouselPicName_3" type="hidden">
+                                <input name="x:schoolID" class="schoolID" type="hidden">  
+                                <input name="accept" type="hidden" />
+                                <input type="submit" value="上传" >
+                                
+                              </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+           
+        </div>
+    </div>
+</div>
+<div class="text-center" ng-include="'tpl/denied.html'">
+    {% include 'denied.html' %}
+</div>

@@ -1,0 +1,103 @@
+<div>
+  <ul class="breadcrumb bg-white b-a">
+    <li><a ui-sref="index.portal"><i class="fa fa-home"></i> 首页</a></li>
+    <!-- <li ><a ui-sref="index.tk">题库广场</a></li> -->
+    <li class="active"><a ui-sref="index.tk.random">随机练习</a></li>
+  </ul>
+</div>
+  
+<div class="wrapper-md">
+  <div class="row row-sm">
+    <div class="col-lg-12">
+      <div class="panel b-a">
+        
+        <div class="panel-body">
+          <div class="wrapper-md">
+            <div class="row row-sm">
+              
+              <div class="col-lg-6" ng-show="q.type==1">
+                <div class="form-group">
+                  <h2>{{q.id}}、{{q.title}}</h2>
+                  <div class="m-b-xs m-t">
+                    <label class="i-checks i-checks-lg">
+                      <input type="radio" name="answer" ng-model="answer" value="正确" ng-change="checkAnswer(answer)">
+                      <i></i>
+                      正确
+                    </label>
+                  </div>
+                  <div class="m-b-xs m-t">
+                    <label class="i-checks i-checks-lg">
+                      <input type="radio" name="answer" ng-model="answer" value="错误" ng-change="checkAnswer(answer)">
+                      <i></i>
+                      错误
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6" ng-show="q.type==0">
+                 <div class="form-group" >
+                  <h2>{{q.id}}、{{q.title}}</h2>
+                  <div class="m-b-xs m-t">
+                    <label class="i-checks i-checks-lg">
+                      <input type="radio" name="answer" ng-model="answer" value="A" ng-change="checkAnswer(answer)">
+                      <i></i>
+                      A、{{q.A}}
+                    </label>
+                  </div>
+                  <div class="m-b-xs m-t">
+                    <label class="i-checks i-checks-lg">
+                      <input type="radio" name="answer" ng-model="answer" value="B" ng-change="checkAnswer(answer)">
+                      <i></i>
+                      B、{{q.B}}
+                    </label>
+                  </div>
+                  <div class="m-b-xs m-t">
+                    <label class="i-checks i-checks-lg">
+                      <input type="radio" name="answer" ng-model="answer" value="C" ng-change="checkAnswer(answer)">
+                      <i></i>
+                      C、{{q.C}}
+                    </label>
+                  </div>
+                  <div class="m-b-xs m-t">
+                    <label class="i-checks i-checks-lg">
+                      <input type="radio" name="answer" ng-model="answer" value="D" ng-change="checkAnswer(answer)">
+                      <i></i>
+                      D、{{q.D}}
+                    </label>
+                  </div>
+                 
+                </div>
+              </div>
+                <div class="col-md-6">
+                 <img  ng-src="{{q.imageUrl}}" >
+                </div>
+                <div ng-hide="unchecked" class="col-lg-12">
+                  <div class="form-group" ng-show="right">
+                   <b class="bg-success" style="font-size:20px">恭喜！回答正确</b>
+                  </div>
+                  <div class="form-group" ng-show="!right">
+                   <b class="bg-danger" style="font-size:20px">错误,正确答案为: {{q.answer}}</b>
+                  </div>
+                </div>
+                <div class="col-lg-12" ng-show="doExplain">
+                  <div class="form-group text-info" style="font-size:30px">
+                  {{q.explain}}
+                  </div>
+                </div> 
+                <div class="col-lg-12">
+                  <div class="form-group">
+                    <!-- <button class="btn btn-default btn-info" ng-click="previous()">上一题</button> -->
+                    <button class="btn btn-default btn-info" ng-click="next()">下一题</button>
+                    <button class="btn btn-default btn-info" ng-click="explain()">看题解</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
